@@ -153,6 +153,37 @@ func (h *Headscale) HealthHandler(
 	respond(nil)
 }
 
+func (h *Headscale) HomeHandler(
+	writer http.ResponseWriter,
+	req *http.Request,
+) {
+	writer.Header().Set("Content-Type", "text/html; charset=utf-8")
+	writer.WriteHeader(http.StatusOK)
+	writer.Write([]byte(`
+<html>
+	<head>
+		<title>pavid.net - Headscale</title>
+	</head>
+	<body>
+		<pre>
+                    _     _              _   
+                   (_)   | |            | |  
+  _ __   __ ___   ___  __| |  _ __   ___| |_ 
+ | '_ \ / _  \ \ / / |/ _  | | '_ \ / _ \ __|
+ | |_) | (_| |\ V /| | (_| |_| | | |  __/ |_ 
+ | .__/ \__,_| \_/ |_|\__,_(_)_| |_|\___|\__|
+ | |                                         
+ |_|       
+		</pre>
+		<p>
+			A headscale server run by
+			<a href="https://nullreff.net/">nullreff</a>
+		</p>
+	</body>
+</html>
+	`))
+}
+
 type registerWebAPITemplateConfig struct {
 	Key string
 }
